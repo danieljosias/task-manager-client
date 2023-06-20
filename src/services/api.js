@@ -1,8 +1,8 @@
 export const loadList = () =>{
     return [
-        {   id: 1,
+        {  
+            id: 1,
             title: 'To do',
-            creatable: true,
             cards: [
                 {
                     id: 1,
@@ -16,6 +16,7 @@ export const loadList = () =>{
                     id: 3,
                     content: 'criar o footer'
                 },
+                
             ]
         }
     ]
