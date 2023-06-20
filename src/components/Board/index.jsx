@@ -4,7 +4,7 @@ import BoardContext from './context'
 import produce from 'immer'
 const data = loadList()
 
-export const Dashboard = () => {
+export const Board = () => {
     const [lists, setLists] = useState(data)
     
     const move = (fromList, toList, from, to) =>{
@@ -18,7 +18,6 @@ export const Dashboard = () => {
 
     return(
         <BoardContext.Provider value={{lists, move}}>
-            <Header/>
             {/* {lists.map((list, index) => <List key={list.id} index={index} data={list} />)} */}
         </BoardContext.Provider>
     )
