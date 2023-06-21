@@ -21,7 +21,7 @@ export const loadList = () =>{
         },
         {  
             id: 2,
-            title: '😎 Doing',
+            title: '😃 Doing',
             cards: [
                 {
                     id: 1,
@@ -36,6 +36,12 @@ export const loadList = () =>{
                     content: 'criar as rotas'
                 },
                 
+            ]
+        },
+        {  
+            id: 3,
+            title: '😎 Done',
+            cards: [ 
             ]
         }
     ]
