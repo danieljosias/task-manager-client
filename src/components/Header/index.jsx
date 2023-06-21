@@ -40,12 +40,12 @@ export const Header = () => {
     }
 
     return (
-        <Flex alignItems='center' justifyContent='center' p='5'>
+        <Flex alignItems='center' justifyContent='center' p='5' bg='blue.300'>
             <Heading as='h1' size={{base: 'sm', md: 'md'}}>Task Manager</Heading>
             <Spacer/>
             
             <Box display='flex' alignItems='center' justifyContent='center' gap='1'>
-                <IconButton size={{base:'sm'}} aria-label='Add icon' icon={<AddIcon/>} onClick={onOpen}/>
+                <IconButton size={{base:'sm'}} aria-label='Add icon' icon={<AddIcon/>} onClick={onOpen} />
                 <Text fontWeight='bold' fontSize={{base: 'sm',md:'md'}}>Adicionar outra lista</Text>
 
                 <Modal
@@ -65,10 +65,10 @@ export const Header = () => {
                     </ModalBody>
 
                     <ModalFooter>  
-                    <Button mr={3} variant={"outline"} _hover={{background: 'blue.100'}} onClick={handleData}>
+                    <Button mr={3} variant={"outline"} _hover={{background: 'blue.300'}} onClick={handleData}>
                         Save
                     </Button>
-                    <Button variant={"outline"} _hover={{background: 'red.100'}} onClick={onClose}>
+                    <Button variant={"outline"} _hover={{background: 'red.300'}} onClick={onClose}>
                         Cancel
                     </Button>
                     </ModalFooter>

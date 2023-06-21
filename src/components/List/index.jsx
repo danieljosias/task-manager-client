@@ -40,7 +40,7 @@ export const List = ({index: listIndex, data}) => {
 
     return(
         <HStack >
-            <Box bg='blackAlpha.100' minH={'300px'} minW={'300px'} p='3' m='5'>
+            <Box bg='blackAlpha.200' minH={'300px'} minW={'300px'} p='3' m='5'>
                 <Heading as='h2' size='sm' mb='3'>{data.title}</Heading>
                 
                 <Box display='flex' flexDirection='column' gap='3' maxH={'200px'} maxW={'300px'} overflowY='scroll' >
@@ -72,16 +72,16 @@ export const List = ({index: listIndex, data}) => {
                     </ModalBody>
 
                     <ModalFooter>  
-                    <Button mr={3} variant={"outline"} _hover={{background: 'blue.100'}} onClick={handleData}>
+                    <Button mr={3} variant={"outline"} _hover={{background: 'blue.300'}} onClick={handleData}>
                         Save
                     </Button>
-                    <Button variant={"outline"} _hover={{background: 'red.100'}} onClick={onClose}>
+                    <Button variant={"outline"} _hover={{background: 'red.300'}} onClick={onClose}>
                         Cancel
                     </Button>
                     </ModalFooter>
                     </ModalContent>
                     </Modal>    
-                    <Button bg='blackAlpha.100' variant='solid' mt={4} size={{base:'sm'}} onClick={onOpen}>Add Task</Button>
+                    <Button bg='blackAlpha.100' _hover={{background: 'blue.300'}} variant='solid' mt={4} size={{base:'sm'}} onClick={onOpen}>Add Task</Button>
                 </Box>
             </Box>
         </HStack>

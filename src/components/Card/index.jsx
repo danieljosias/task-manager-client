@@ -90,7 +90,7 @@ export const Cardd = ({listIndex, index, data}) => {
     }
 
     return(
-      <Card p='3' bg='blue.100' cursor='grab' ref={ref} isDragging={isDragging}>
+      <Card p='3' bg='blue.300' cursor='grab' ref={ref} isDragging={isDragging}>
         <HStack>
           <Text fontWeight='bold' fontSize={{base: 'sm', md:'md'}} minW={'150'} maxW={'150'} overflow='hidden' textOverflow='ellipsis' whiteSpace='nowrap'>{data.content}</Text>
           <Box>
@@ -111,10 +111,10 @@ export const Cardd = ({listIndex, index, data}) => {
                 </ModalBody>
 
                 <ModalFooter>  
-                <Button mr={3} variant={"outline"} _hover={{background: 'blue.100'}} onClick={handleData}>
+                <Button mr={3} variant={"outline"} _hover={{background: 'blue.300'}} onClick={handleData}>
                     Save
                 </Button>
-                <Button variant={"outline"} _hover={{background: 'red.100'}} onClick={onClose}>
+                <Button variant={"outline"} _hover={{background: 'red.300'}} onClick={onClose}>
                     Cancel
                 </Button>
                 </ModalFooter>
