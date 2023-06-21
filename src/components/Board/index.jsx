@@ -20,7 +20,7 @@ export const Board = () => {
 
     return(
         <BoardContext.Provider value={{lists, move}}>
-            <Box display='flex'>
+            <Box display='flex' overflowX='scroll'>
                 {lists.map((list, index) => <List key={list.id} index={index} data={list} />)}
             </Box>
         </BoardContext.Provider>

@@ -25,7 +25,7 @@ export const loadList = () =>{
             cards: [
                 {
                     id: 1,
-                    content: 'criar o modal'
+                    content: 'criar o modal de editar tarefa criar o modal de editar tarefa '
                 },
                 {
                     id: 2,

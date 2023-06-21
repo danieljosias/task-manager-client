@@ -55,9 +55,9 @@ export const Cardd = ({listIndex, index, data}) => {
     dragRef(dropRef(ref));
 
     return(
-      <Card p='3' bg='blue.100' cursor='grab' ref={dragRef} isDragging={isDragging}>
+      <Card p='3' bg='blue.100' cursor='grab' ref={ref} isDragging={isDragging}>
         <HStack>
-          <Text fontWeight='bold' fontSize={{base: 'sm', md:'md'}} minW={'150'}>{data.content}</Text>
+          <Text fontWeight='bold' fontSize={{base: 'sm', md:'md'}} minW={'150'} maxW={'150'} overflow='hidden' textOverflow='ellipsis' whiteSpace='nowrap'>{data.content}</Text>
           <Box>
               <IconButton mr='3' size={{base:'sm'}} aria-label='Edit icon' icon={<EditIcon/>}></IconButton>     
               <IconButton size={{base:'sm'}} aria-label='Delete icon' icon={<DeleteIcon/>}></IconButton>
