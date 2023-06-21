@@ -3,6 +3,7 @@ import { loadList } from "../../services/api"
 import BoardContext from './context'
 import { List } from "../List"
 import produce from 'immer'
+import { Box } from "@chakra-ui/react"
 const data = loadList()
 
 export const Board = () => {
@@ -18,10 +19,10 @@ export const Board = () => {
     }
 
     return(
-        <>
-            <BoardContext.Provider value={{lists, move}}>
+        <BoardContext.Provider value={{lists, move}}>
+            <Box display='flex'>
                 {lists.map((list, index) => <List key={list.id} index={index} data={list} />)}
-            </BoardContext.Provider>
-        </>
+            </Box>
+        </BoardContext.Provider>
     )
 }

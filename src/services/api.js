@@ -2,7 +2,7 @@ export const loadList = () =>{
     return [
         {  
             id: 1,
-            title: 'To do',
+            title: '😅 To do',
             cards: [
                 {
                     id: 1,
@@ -15,6 +15,25 @@ export const loadList = () =>{
                 {
                     id: 3,
                     content: 'criar o footer'
+                },
+                
+            ]
+        },
+        {  
+            id: 2,
+            title: '😎 Doing',
+            cards: [
+                {
+                    id: 1,
+                    content: 'criar o modal'
+                },
+                {
+                    id: 2,
+                    content: 'criar o button'
+                },
+                {
+                    id: 3,
+                    content: 'criar as rotas'
                 },
                 
             ]
