@@ -1,8 +1,42 @@
-import { Box, VStack, HStack ,Heading } from '@chakra-ui/layout'
-import { Button } from '@chakra-ui/button'
+import { useState, useRef } from 'react'
 import { Cardd } from '../Card'
+import { Box, HStack, Heading } from '@chakra-ui/layout'
+import { Button } from '@chakra-ui/button'
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    FormControl,
+    FormLabel,
+    Input,
+    useDisclosure,
+    useToast
+} from '@chakra-ui/react'
 
 export const List = ({index: listIndex, data}) => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const initialRef = useRef(null)
+    const finalRef = useRef(null)
+
+    const [input, setInput] = useState('')
+    const toast = useToast()
+
+    const handleInputChange = (e) => setInput(e.target.value)
+
+    const handleData = () => {
+        if(input === ''){
+            toast({description:'Task required', status: 'error', duration: 4000,})
+        }else{
+            console.log(input)
+            onClose()
+            toast({description:'Task creates', status: 'success', duration: 4000,})
+        }
+    }
 
     return(
         <HStack >
@@ -21,7 +55,33 @@ export const List = ({index: listIndex, data}) => {
                 </Box>
 
                 <Box alignItems='center' justifyContent='center'>
-                    <Button bg='blackAlpha.100' variant='solid' mt={4} size={{base:'sm'}} >Add Task</Button>
+                    <Modal
+                        initialFocusRef={initialRef}
+                        isOpen={isOpen}
+                        onClose={onClose}    
+                    >
+                    <ModalOverlay />
+                    <ModalContent >
+                    <ModalHeader>Create your task</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody pb={6}>
+                    <FormControl isRequired>
+                        <FormLabel>Task</FormLabel>
+                        <Input ref={initialRef} value={input} onChange={handleInputChange} placeholder='Enter here' />
+                    </FormControl>
+                    </ModalBody>
+
+                    <ModalFooter>  
+                    <Button mr={3} variant={"outline"} _hover={{background: 'blue.100'}} onClick={handleData}>
+                        Save
+                    </Button>
+                    <Button variant={"outline"} _hover={{background: 'red.100'}} onClick={onClose}>
+                        Cancel
+                    </Button>
+                    </ModalFooter>
+                    </ModalContent>
+                    </Modal>    
+                    <Button bg='blackAlpha.100' variant='solid' mt={4} size={{base:'sm'}} onClick={onOpen}>Add Task</Button>
                 </Box>
             </Box>
         </HStack>
