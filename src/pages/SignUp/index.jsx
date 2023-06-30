@@ -1,4 +1,5 @@
-import { Flex, Heading, VStack } from "@chakra-ui/layout"
+import { useState } from "react"
+import { Heading, VStack } from "@chakra-ui/layout"
 import {
     FormControl,
     FormLabel,
@@ -11,11 +12,23 @@ import {
     Box,
 } from '@chakra-ui/react'
 
-
 export const SignUp = () => {
+    const [name,setName] = useState('')
+    const [avatar,setAvatar] = useState('')
+    const [email,setEmail] = useState('')
+    const [password,setPassword] = useState('')
+    
+    const data = [
+        {
+            name: name,
+            avatar: avatar,
+            email: email,
+            password: password
+        }
+    ]
 
     const handleData = () => {
-
+        console.log(data)
     }
 
     return(
@@ -23,18 +36,18 @@ export const SignUp = () => {
             <Heading>Sign Up</Heading>
             <FormControl isRequired borderRadius='10' bg='blue.300' p='5' w={{base: '300px', md: 'sm', lg: 'sm'}}>
                 <FormLabel mt='3'>Name</FormLabel>
-                <Input variant='filled' placeholder='Name' />
+                <Input value={name} onChange={(e) => setName(e.target.value)} variant='filled' placeholder='Name' />
 
                 <FormLabel mt='3'>Avatar</FormLabel>
-                <Input variant='filled' placeholder='Avatar' />
+                <Input value={avatar} onChange={(e) => setAvatar(e.target.value)} variant='filled' placeholder='Avatar' />
 
                 <FormLabel mt='3'>Email</FormLabel>
-                <Input variant='filled' placeholder='Email' />
+                <Input type='email' value={email} onChange={(e) => setEmail(e.target.value)} variant='filled' placeholder='Email' />
 
                 <FormLabel mt='3'>Password</FormLabel>
-                <Input mb='3'variant='filled' placeholder='Password' />
+                <Input type='password' value={password} onChange={(e) => setPassword(e.target.value)} mb='3'variant='filled' placeholder='Password' />
 
-                <Button  _hover={{ bg: '#ebedf0', color: 'black' }} colorScheme='white' bg='black' w={{base:'260px', md:'344px'}} mt='3' type='submit'>Register</Button>
+                <Button onClick={handleData}  _hover={{ bg: '#ebedf0', color: 'black' }} colorScheme='white' bg='black' w={{base:'260px', md:'344px'}} mt='3' type='submit'>Register</Button>
 
                 <Box display='flex' gap='2' mt='3' justifyContent='space-between'>
                     <Text fontSize='md' fontWeight='medium'>Já possui conta?</Text> 
