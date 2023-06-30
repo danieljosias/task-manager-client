@@ -32,8 +32,8 @@ export const SignUp = () => {
     }
 
     return(
-        <VStack m='5'>
-            <Heading>Sign Up</Heading>
+        <VStack m={{base: '5', lg: '10', xl: '10'}}>
+            <Heading mb={{xl: '3', lg: '3'}}>Sign Up</Heading>
             <FormControl isRequired borderRadius='10' bg='blue.300' p='5' w={{base: '300px', md: 'sm', lg: 'sm', xl:'sm'}}>
                 <FormLabel mt='3'>Name</FormLabel>
                 <Input value={name} onChange={(e) => setName(e.target.value)} variant='filled' placeholder='Name' />
