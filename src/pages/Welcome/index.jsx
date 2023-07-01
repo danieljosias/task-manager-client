@@ -16,7 +16,7 @@ export const Welcome = () => {
             </Box>
             <Box>
                 <Heading as='h1' fontSize='4xl' w={{base: '320px', md: 'md', lg: 'lg', xl: 'xl'}}>Task Manager</Heading>
-                <Button onClick={handleNavigate} mt='3' bg='blue.300' w={{base: '320px', md: 'md', lg: 'lg', xl: 'sm'}} >Lest's Go</Button>
+                <Button onClick={handleNavigate} mt='3' bg='blue.300' w={{base: '320px', md: 'md', lg: 'lg', xl: 'sm'}} >Let's Go</Button>
             </Box>
         </Flex>
     )
