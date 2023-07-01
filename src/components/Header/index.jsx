@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react'
-import { Box, Button, Heading, Text } from '@chakra-ui/react'
-import { Flex, Spacer } from '@chakra-ui/react'
+import { useHistory } from 'react-router-dom'
+import { Avatar , Flex, Spacer, Box, Button, Heading, Text, IconButton } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
-import { IconButton } from '@chakra-ui/react'
+import { RiLogoutCircleRLine} from 'react-icons/ri'
 import {
     Modal,
     ModalOverlay,
@@ -19,10 +19,11 @@ import {
 } from '@chakra-ui/react'
 
 export const Header = () => {
+    const history = useHistory()
+
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const initialRef = useRef(null)
-    const finalRef = useRef(null)
 
     const [input, setInput] = useState('')
     const toast = useToast()
@@ -39,15 +40,20 @@ export const Header = () => {
         }
     }
 
+    const handleLogout = () => {
+        history.push('/signin')
+    }
+
     return (
         <Flex alignItems='center' justifyContent='center' p='5' bg='blue.300'>
             <Heading as='h1' size={{base: 'sm', md: 'md'}}>Task Manager</Heading>
             <Spacer/>
             
-            <Box display='flex' alignItems='center' justifyContent='center' gap='1'>
-                <IconButton size={{base:'sm'}} aria-label='Add icon' icon={<AddIcon/>} onClick={onOpen} />
-                <Text fontWeight='bold' fontSize={{base: 'sm',md:'md'}}>Adicionar outra lista</Text>
-
+            <Box display='flex' alignItems='center' justifyContent='center' gap='2'>
+                <IconButton size={{base:'xs', md:'sm'}} aria-label='Add icon' icon={<AddIcon/>} onClick={onOpen} />
+                <Text fontWeight='bold' fontSize={{base: 'sm', md:'md'}}>Add other list</Text>
+                <Avatar ml={{base:'1', xl: '5'}} name='Daniel Josias' size={{base:'xs', md:'sm'}}/>
+                <IconButton onClick={handleLogout} size={{base:'xs', md:'sm'}} aria-label='logout' icon={<RiLogoutCircleRLine />}/>
                 <Modal
                     initialFocusRef={initialRef}
                     isOpen={isOpen}
@@ -74,7 +80,6 @@ export const Header = () => {
                     </ModalFooter>
                     </ModalContent>
                 </Modal>    
-
             </Box>
         </Flex>
     );
