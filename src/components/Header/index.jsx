@@ -36,12 +36,13 @@ export const Header = () => {
         }else{
             console.log(input)
             onClose()
-            toast({description:'List creates', status: 'success', duration: 4000,})
+            toast({description:'List creates', status: 'success', duration: 4000, colorScheme:'blue'})
         }
     }
 
     const handleLogout = () => {
         history.push('/signin')
+        toast({description:'Logout', status: 'success', duration: 4000, colorScheme:'blue'})
     }
 
     return (

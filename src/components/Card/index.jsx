@@ -72,7 +72,6 @@ export const Cardd = ({listIndex, index, data}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const initialRef = useRef(null)
-    const finalRef = useRef(null)
 
     const [input, setInput] = useState('')
     const toast = useToast()
@@ -85,8 +84,12 @@ export const Cardd = ({listIndex, index, data}) => {
         }else{
             console.log(input)
             onClose()
-            toast({description:'Task creates', status: 'success', duration: 4000,})
+            toast({description:'Task creates', status: 'success', duration: 4000, colorScheme:'blue'})
         }
+    }
+
+    const handleDelete = () => {
+      toast({description: 'Task deleted', status: 'success', duration: 4000, colorScheme:'blue'})
     }
 
     return(
@@ -120,8 +123,9 @@ export const Cardd = ({listIndex, index, data}) => {
                 </ModalFooter>
                 </ModalContent>
                 </Modal>    
+                
               <IconButton mr='3' size={{base:'sm'}} aria-label='Edit icon' onClick={onOpen} icon={<EditIcon/>}></IconButton>     
-              <IconButton size={{base:'sm'}} aria-label='Delete icon' icon={<DeleteIcon/>}></IconButton>
+              <IconButton size={{base:'sm'}} aria-label='Delete icon' onClick={handleDelete} icon={<DeleteIcon/>}></IconButton>
           </Box>
         </HStack>
       </Card> 
