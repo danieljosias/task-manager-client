@@ -2,6 +2,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { Welcome } from "../pages/Welcome";
 import { Dashboard } from "../pages/Dashboard";
 import { SignUp } from '../pages/SignUp';
+import { SignIn } from '../pages/SignIn';
 
 export const Router = () => {
   return (
@@ -9,11 +10,17 @@ export const Router = () => {
       <Route exact path="/">
         <Welcome/>
       </Route>
+
       <Route exact path="/dashboard">
         <Dashboard/>
       </Route>
-      <Route>
-        <SignUp exact path='/signup'/>
+
+      <Route exact path="/signup">
+        <SignUp/>
+      </Route>
+      
+      <Route exact path="/signin">
+        <SignIn/>
       </Route>
     </Switch>
   );
