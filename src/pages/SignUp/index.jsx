@@ -32,7 +32,7 @@ export const SignUp = () => {
     return(
         <VStack m={{base: '5', lg: '10', xl: '10'}}>
             <Heading mb={{xl: '3', lg: '3'}}>Sign Up</Heading>
-            <FormControl isRequired borderRadius='10' bg='blue.300' p='5' w={{base: '300px', md: 'sm', lg: 'sm', xl:'sm'}}>
+            <FormControl isRequired borderRadius='10' bg='blue.300' p='5' w={{base: '300px', md: 'sm', lg: 'xs', xl:'sm'}}>
                 <FormLabel mt='3'>Name</FormLabel>
                 <Input value={name} onChange={(e) => setName(e.target.value)} variant='filled' placeholder='Name' />
 
@@ -45,7 +45,7 @@ export const SignUp = () => {
                 <FormLabel mt='3'>Password</FormLabel>
                 <Input type='password' value={password} onChange={(e) => setPassword(e.target.value)} mb='3'variant='filled' placeholder='Password' />
 
-                <Button onClick={handleData}  _hover={{ bg: '#ebedf0', color: 'black' }} colorScheme='white' bg='black' w={{base:'260px', md:'344px'}} mt='3' type='submit'>Register</Button>
+                <Button onClick={handleData}  _hover={{ bg: '#ebedf0', color: 'black' }} colorScheme='white' bg='black' w={{base:'260px', md:'344px', lg:'280px'}} mt='3' type='submit'>Register</Button>
 
                 <Box display='flex' gap='2' mt='3' justifyContent='space-between'>
                     <Text fontSize='md' fontWeight='medium'>Já possui conta?</Text> 

@@ -10,13 +10,13 @@ export const Welcome = () => {
     }
 
     return(
-        <Flex h='100vh' display={{base: 'flex'}} flexDirection={{base: 'column', xl: 'row'}} alignItems={{base: 'center'}} justifyContent={{base: 'center'}} textAlign={{base: 'center'}} gap='5'>
+        <Flex h='100vh' display={{base: 'flex'}} flexDirection={{base: 'column', lg: 'row', xl: 'row'}} alignItems={{base: 'center'}} justifyContent={{base: 'center'}} textAlign={{base: 'center'}} gap='5'>
             <Box>
-                <Image src={welcome} alt='welcome' w={{base: '320px', md: 'md', lg: 'lg', xl: 'md'}}/>
+                <Image src={welcome} alt='welcome' w={{base: '320px', md: 'md', lg: 'sm', xl: 'md'}}/>
             </Box>
             <Box>
                 <Heading as='h1' fontSize='4xl' w={{base: '320px', md: 'md', lg: 'lg', xl: 'xl'}}>Task Manager</Heading>
-                <Button onClick={handleNavigate} mt='3' bg='blue.300' w={{base: '320px', md: 'md', lg: 'lg', xl: 'sm'}} >Let's Go</Button>
+                <Button onClick={handleNavigate} mt='3' bg='blue.300' w={{base: '320px', md: 'md', lg: 'xs', xl: 'sm'}} >Let's Go</Button>
             </Box>
         </Flex>
     )
