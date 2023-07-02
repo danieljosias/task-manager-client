@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import React, { useContext, useState } from "react"
 import { Link } from 'react-router-dom'
 import { Heading, VStack } from "@chakra-ui/layout"
 import {
@@ -9,14 +9,14 @@ import {
     Text,
     Box,
 } from '@chakra-ui/react'
-import { ApiContext } from "../../providers/api"
+/* import { ApiContext } from "../../providers/api" */
 
 export const SignUp = () => {
     const [name,setName] = useState('')
     const [avatar,setAvatar] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
-    const { createsClients } = useContext(ApiContext)
+    /* const { createsClients } = useContext(ApiContext) */
     
     const data = [
         {
@@ -28,7 +28,7 @@ export const SignUp = () => {
     ]
 
     const handleData = async () => {
-        const response = await createsClients(data)
+        /* const response = await createsClients(data) */
     }
 
     return(

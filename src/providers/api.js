@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { api } from '../services/index'
+import api from '../services/index'
 
 export const ApiContext = createContext([])
 
