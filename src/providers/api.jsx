@@ -1,11 +1,14 @@
-import { api } from '../services/index'
+import { createContext } from 'react'
+import api from '../services'
+
+export const ApiContext = createContext([])
 
 export const ApiProvider = ({children}) => {
     //let token = localStorage.getItem('token')
 
-    async function createsUsers(data){
+    async function createsClients(data){
         try {
-            const res = await api.post('/clients', data)
+            const res = await api.post('/clients/', data)
             return res
         } catch (error) {
             return error
@@ -77,7 +80,7 @@ export const ApiProvider = ({children}) => {
 
     return(
         <ApiContext.Provider
-            value={{createsUsers,login,createsTasks,createsLists,updateTasks,deleteTasks,listTasks,listLists}}
+            value={{createsClients,login,createsTasks,createsLists,updateTasks,deleteTasks,listTasks,listLists}}
         >
             {children}
         </ApiContext.Provider>

@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { Link } from 'react-router-dom'
+import React, { useState, useContext } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import { Heading, VStack } from "@chakra-ui/layout"
 import {
     FormControl,
@@ -8,25 +8,36 @@ import {
     Button,
     Text,
     Box,
+    useToast,
 } from '@chakra-ui/react'
+import { ApiContext } from "../../providers/api"
 
 export const SignUp = () => {
-    const [name,setName] = useState('')
+    const { createsClients } = useContext(ApiContext)
+    const [username,setUsername] = useState('')
     const [avatar,setAvatar] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
-    
-    const data = [
-        {
-            name: name,
+    const toast = useToast()
+    const history = useHistory()
+
+    const data = {
+        "user" : {
+            username: username,
             avatar: avatar,
             email: email,
             password: password
         }
-    ]
-
-    const handleData = () => {
-        console.log(data)
+    }
+        
+    const handleData = async () => {
+        const response = await createsClients(data)
+        localStorage.setItem('userId', response.data.user.id)
+        
+        if(response !== 'AxiosError'){
+            toast({title:'Account created', status:'success', duration: 4000})
+            history.push('/signup')
+        }
     }
 
     return(
@@ -34,7 +45,7 @@ export const SignUp = () => {
             <Heading mb={{xl: '3', lg: '3'}}>Sign Up</Heading>
             <FormControl isRequired borderRadius='10' bg='blue.300' p='5' w={{base: '300px', md: 'sm', lg: 'xs', xl:'sm'}}>
                 <FormLabel mt='3'>Name</FormLabel>
-                <Input value={name} onChange={(e) => setName(e.target.value)} variant='filled' placeholder='Name' />
+                <Input value={username} onChange={(e) => setUsername(e.target.value)} variant='filled' placeholder='Name' />
 
                 <FormLabel mt='3'>Avatar</FormLabel>
                 <Input value={avatar} onChange={(e) => setAvatar(e.target.value)} variant='filled' placeholder='Avatar' />
