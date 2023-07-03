@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Heading, VStack } from "@chakra-ui/layout"
 import {
     FormControl,
@@ -8,6 +8,7 @@ import {
     Button,
     Text,
     Box,
+    useToast,
 } from '@chakra-ui/react'
 import { ApiContext } from "../../providers/api"
 
@@ -17,18 +18,26 @@ export const SignUp = () => {
     const [avatar,setAvatar] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
-    
-    const user = {
-        username: username,
-        avatar: avatar,
-        email: email,
-        password: password
-    }
+    const toast = useToast()
+    const history = useHistory()
 
+    const data = {
+        "user" : {
+            username: username,
+            avatar: avatar,
+            email: email,
+            password: password
+        }
+    }
+        
     const handleData = async () => {
-        const response = await createsClients(user)
-        console.log(user)
-        console.log(response)
+        const response = await createsClients(data)
+        localStorage.setItem('userId', response.data.user.id)
+        
+        if(response !== 'AxiosError'){
+            toast({title:'Account created', status:'success', duration: 4000})
+            history.push('/signup')
+        }
     }
 
     return(

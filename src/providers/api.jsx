@@ -6,9 +6,9 @@ export const ApiContext = createContext([])
 export const ApiProvider = ({children}) => {
     //let token = localStorage.getItem('token')
 
-    async function createsClients(user){
+    async function createsClients(data){
         try {
-            const res = await api.post('/clients/', user)
+            const res = await api.post('/clients/', data)
             return res
         } catch (error) {
             return error
