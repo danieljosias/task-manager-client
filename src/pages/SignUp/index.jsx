@@ -35,7 +35,7 @@ export const SignUp = () => {
         localStorage.setItem('userId', response.data.user.id)
         
         if(response !== 'AxiosError'){
-            toast({title:'Account created', status:'success', duration: 4000})
+            toast({title:'Account created', status:'success', duration: 4000,colorScheme:'blue'})
             history.push('/signup')
         }
     }

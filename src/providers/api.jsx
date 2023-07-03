@@ -15,9 +15,9 @@ export const ApiProvider = ({children}) => {
         }
     }
 
-    async function login(data){
+    async function loginClients(data){
         try {
-            const res = await api.post('/login', data)
+            const res = await api.post('/login/', data)
             return res
         } catch (error) {
             return error
@@ -80,7 +80,7 @@ export const ApiProvider = ({children}) => {
 
     return(
         <ApiContext.Provider
-            value={{createsClients,login,createsTasks,createsLists,updateTasks,deleteTasks,listTasks,listLists}}
+            value={{createsClients,loginClients,createsTasks,createsLists,updateTasks,deleteTasks,listTasks,listLists}}
         >
             {children}
         </ApiContext.Provider>
