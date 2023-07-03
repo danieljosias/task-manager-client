@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { Link } from 'react-router-dom'
+import { useContext, useState } from "react"
+import { Link, useHistory } from 'react-router-dom'
 import { Heading, VStack } from "@chakra-ui/layout"
 import {
     FormControl,
@@ -8,29 +8,38 @@ import {
     Button,
     Text,
     Box,
+    useToast,
 } from '@chakra-ui/react'
+import { ApiContext } from '../../providers/api'
 
 export const SignIn = () => {
-    const [name,setName] = useState('')
+    const [username,setUsername] = useState('')
     const [password,setPassword] = useState('')
-    
-    const data = [
-        {
-            name: name,
+    const { loginClients } = useContext(ApiContext)
+    const toast = useToast()
+    const history = useHistory()
+
+    const data = {
+            username: username,
             password: password
         }
-    ]
 
-    const handleData = () => {
-        console.log(data)
+    const handleData = async () => {
+       const response = await loginClients(data)
+       localStorage.setItem('token', response.data.token)
+
+       if(response.error != 'AxiosError'){
+        toast({title:'Client logged', status:'success', duration: 4000, colorScheme:'blue'})
+        history.push('/dashboard')
+       }
     }
 
     return(
         <VStack h='100vh' alignItems='center' justifyContent='center' m={{base: '5', lg: '10', xl: '10'}}>
             <Heading mb={{xl: '3', lg: '3'}}>Sign In</Heading>
             <FormControl isRequired borderRadius='10' bg='blue.300' p='5' w={{base: '300px', md: 'sm', lg: 'xs', xl:'sm'}}>
-                <FormLabel mt='3'>Name</FormLabel>
-                <Input value={name} onChange={(e) => setName(e.target.value)} variant='filled' placeholder='Name' />
+                <FormLabel mt='3'>Username</FormLabel>
+                <Input value={username} onChange={(e) => setUsername(e.target.value)} variant='filled' placeholder='username' />
 
                 <FormLabel mt='3'>Password</FormLabel>
                 <Input type='password' value={password} onChange={(e) => setPassword(e.target.value)} mb='3'variant='filled' placeholder='Password' />
