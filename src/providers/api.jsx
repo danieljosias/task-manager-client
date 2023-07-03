@@ -1,14 +1,14 @@
 import { createContext } from 'react'
-import api from '../services/index'
+import api from '../services'
 
 export const ApiContext = createContext([])
 
 export const ApiProvider = ({children}) => {
     //let token = localStorage.getItem('token')
 
-    async function createsClients(data){
+    async function createsClients(user){
         try {
-            const res = await api.post('/clients', data)
+            const res = await api.post('/clients/', user)
             return res
         } catch (error) {
             return error

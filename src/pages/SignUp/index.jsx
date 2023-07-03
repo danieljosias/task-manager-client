@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Heading, VStack } from "@chakra-ui/layout"
 import {
@@ -9,26 +9,26 @@ import {
     Text,
     Box,
 } from '@chakra-ui/react'
-/* import { ApiContext } from "../../providers/api" */
+import { ApiContext } from "../../providers/api"
 
 export const SignUp = () => {
-    const [name,setName] = useState('')
+    const { createsClients } = useContext(ApiContext)
+    const [username,setUsername] = useState('')
     const [avatar,setAvatar] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
-    /* const { createsClients } = useContext(ApiContext) */
     
-    const data = [
-        {
-            name: name,
-            avatar: avatar,
-            email: email,
-            password: password
-        }
-    ]
+    const user = {
+        username: username,
+        avatar: avatar,
+        email: email,
+        password: password
+    }
 
     const handleData = async () => {
-        /* const response = await createsClients(data) */
+        const response = await createsClients(user)
+        console.log(user)
+        console.log(response)
     }
 
     return(
@@ -36,7 +36,7 @@ export const SignUp = () => {
             <Heading mb={{xl: '3', lg: '3'}}>Sign Up</Heading>
             <FormControl isRequired borderRadius='10' bg='blue.300' p='5' w={{base: '300px', md: 'sm', lg: 'xs', xl:'sm'}}>
                 <FormLabel mt='3'>Name</FormLabel>
-                <Input value={name} onChange={(e) => setName(e.target.value)} variant='filled' placeholder='Name' />
+                <Input value={username} onChange={(e) => setUsername(e.target.value)} variant='filled' placeholder='Name' />
 
                 <FormLabel mt='3'>Avatar</FormLabel>
                 <Input value={avatar} onChange={(e) => setAvatar(e.target.value)} variant='filled' placeholder='Avatar' />
