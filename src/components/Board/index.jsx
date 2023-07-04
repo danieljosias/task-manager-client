@@ -1,13 +1,12 @@
-import { useState } from "react"
-import { loadList } from "../../services/api"
+import { useContext, useState } from "react"
 import BoardContext from './context'
 import { List } from "../List"
 import produce from 'immer'
 import { Box } from "@chakra-ui/react"
-const data = loadList()
+import { ApiContext } from "../../providers/api"
 
 export const Board = () => {
-    const [lists, setLists] = useState(data)
+    const { listLists, lists } = useContext(ApiContext)
     
     const move = (fromList, toList, from, to) =>{
         setLists(produce(lists, draft => {
@@ -21,7 +20,7 @@ export const Board = () => {
     return(
         <BoardContext.Provider value={{lists, move}}>
             <Box display='flex' overflowX='scroll'>
-                {lists.map((list, index) => <List key={list.id} index={index} data={list} />)}
+                {lists.map((list, index) => <List key={list.id} listIndex={index} lists={list.data} />)}
             </Box>
         </BoardContext.Provider>
     )
