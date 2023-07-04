@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Avatar , Flex, Spacer, Box, Button, Heading, Text, IconButton } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
@@ -17,24 +17,36 @@ import {
     useDisclosure,
     useToast
 } from '@chakra-ui/react'
+import { ApiContext } from '../../providers/api'
 
 export const Header = () => {
+    const { createsLists } = useContext(ApiContext)
+
     const history = useHistory()
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const initialRef = useRef(null)
 
-    const [input, setInput] = useState('')
+    const [title, setTitle] = useState('')
     const toast = useToast()
 
-    const handleInputChange = (e) => setInput(e.target.value)
+    const handleInputChange = (e) => setTitle(e.target.value)
+    
+    const userId = localStorage.getItem('userId')
 
-    const handleData = () => {
-        if(input === ''){
+    const data = {
+        title: title,
+        user_id: userId
+    }
+    
+    const handleData = async () => {
+        const response = await createsLists(data)
+        console.log(response)
+        
+        if(title === ''){
             toast({description:'List required', status: 'error', duration: 4000,})
         }else{
-            console.log(input)
             onClose()
             toast({description:'List creates', status: 'success', duration: 4000, colorScheme:'blue'})
         }
@@ -67,7 +79,7 @@ export const Header = () => {
                     <ModalBody pb={6}>
                     <FormControl isRequired>
                         <FormLabel>List</FormLabel>
-                        <Input ref={initialRef} value={input} onChange={handleInputChange} placeholder='Enter here' />
+                        <Input ref={initialRef} value={title} onChange={handleInputChange} placeholder='Enter here' />
                     </FormControl>
                     </ModalBody>
 

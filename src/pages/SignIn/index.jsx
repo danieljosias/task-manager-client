@@ -15,14 +15,14 @@ import { ApiContext } from '../../providers/api'
 export const SignIn = () => {
     const [username,setUsername] = useState('')
     const [password,setPassword] = useState('')
-    const { loginClients } = useContext(ApiContext)
+    const { loginClients, listLists, setLists } = useContext(ApiContext)
     const toast = useToast()
     const history = useHistory()
 
     const data = {
             username: username,
             password: password
-        }
+    }
 
     const handleData = async () => {
        const response = await loginClients(data)
@@ -31,6 +31,8 @@ export const SignIn = () => {
        if(response.error != 'AxiosError'){
         toast({title:'Logged', status:'success', duration: 4000, colorScheme:'blue'})
         history.push('/dashboard')
+        const response = await listLists()
+        setLists([response])
        }
     }
 

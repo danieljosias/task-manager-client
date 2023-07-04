@@ -17,11 +17,10 @@ import {
     useToast
 } from '@chakra-ui/react'
 
-export const List = ({index: listIndex, data}) => {
+export const List = ({listIndex, lists}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const initialRef = useRef(null)
-    const finalRef = useRef(null)
 
     const [input, setInput] = useState('')
     const toast = useToast()
@@ -40,18 +39,12 @@ export const List = ({index: listIndex, data}) => {
 
     return(
         <HStack >
-            <Box bg='blackAlpha.200' minH={'300px'} minW={'300px'} p='3' m='5'>
-                <Heading as='h2' size='sm' mb='3'>{data.title}</Heading>
+            {lists.map((list) =>{
+                return  <Box key={list.id} bg='blackAlpha.200' minH={'300px'} minW={'300px'} p='3' m='5'>
+                <Heading  as='h2' size='sm' mb='3'>{list.title}</Heading>
                 
                 <Box display='flex' flexDirection='column' gap='3' maxH={'200px'} maxW={'300px'} overflowY='scroll' >
-                    {data.cards.map((card, index) => {
-                    return <Cardd 
-                        key={card.id}
-                        listIndex={listIndex}
-                        index={index}
-                        data={card}
-                        />
-                    })}
+                    
                 </Box>
 
                 <Box alignItems='center' justifyContent='center'>
@@ -83,7 +76,8 @@ export const List = ({index: listIndex, data}) => {
                     </Modal>    
                     <Button bg='blackAlpha.100' _hover={{background: 'blue.300'}} variant='solid' mt={4} size={{base:'sm'}} onClick={onOpen}>Add Task</Button>
                 </Box>
-            </Box>
+                </Box>
+            })}
         </HStack>
     )
 }

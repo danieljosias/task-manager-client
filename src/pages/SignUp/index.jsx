@@ -36,7 +36,7 @@ export const SignUp = () => {
         
         if(response !== 'AxiosError'){
             toast({title:'Account created', status:'success', duration: 4000,colorScheme:'blue'})
-            history.push('/signup')
+            history.push('/signin')
         }
     }
 
