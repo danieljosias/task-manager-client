@@ -34,7 +34,7 @@ export const List = ({index: listIndex, data}) => {
         }else{
             console.log(input)
             onClose()
-            toast({description:'Task creates', status: 'success', duration: 4000,})
+            toast({description:'Task creates', status: 'success', duration: 4000, colorScheme:'blue'})
         }
     }
 

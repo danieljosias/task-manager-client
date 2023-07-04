@@ -84,7 +84,7 @@ export const Cardd = ({listIndex, index, data}) => {
         }else{
             console.log(input)
             onClose()
-            toast({description:'Task creates', status: 'success', duration: 4000, colorScheme:'blue'})
+            toast({description:'Task edited', status: 'success', duration: 4000, colorScheme:'blue',})
         }
     }
 
