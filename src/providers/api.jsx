@@ -28,9 +28,14 @@ export const ApiProvider = ({children}) => {
         }   
     }   
 
-    async function createsTasks(data, userId){
+    async function createsTasks(data){
         try {
-            const res = await api.post('/tasks/', {data,userId,token})
+            const res = await api.post('/tasks/',data,
+            {
+                headers:{
+                    'Authorization':`token ${token}`
+                }
+            })
             return res
         } catch (error) {
             return error
