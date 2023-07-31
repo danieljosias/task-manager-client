@@ -94,7 +94,7 @@ export const Cardd = ({listIndex, index, data}) => {
     return(
       <Card p='3' bg='blue.300' cursor='grab' ref={ref} isDragging={isDragging}>
         <HStack>
-           <Text fontWeight='bold' fontSize={{base: 'sm', md:'md'}} minW={'150'} maxW={'150'} overflow='hidden' textOverflow='ellipsis' whiteSpace='nowrap'>{data.data.content}</Text>
+           <Text fontWeight='bold' fontSize={{base: 'sm', md:'md'}} minW={'150'} maxW={'150'} overflow='hidden' textOverflow='ellipsis' whiteSpace='nowrap'>{data.data[0]?.content}</Text>
          
           <Box>
               <Modal

@@ -19,7 +19,7 @@ import {
 import { ApiContext } from '../../providers/api'
 
 export const List = ({index: listIndex, lists}) => {
-    const { createsTasks, setTasks, tasks } = useContext(ApiContext)
+    const { createsTasks, tasks } = useContext(ApiContext)
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const initialRef = useRef(null)
@@ -40,7 +40,6 @@ export const List = ({index: listIndex, lists}) => {
 
     const handleData = async () => {
         const response = await createsTasks(data)
-        setTasks([response])
 
         if(content === ''){
             toast({description:'Task required', status: 'error', duration: 4000,})
@@ -52,21 +51,18 @@ export const List = ({index: listIndex, lists}) => {
 
     return(
         <HStack >
-            {lists.map((list, index) =>{
-                return  <Box key={index} bg='blackAlpha.200' minH={'300px'} minW={'300px'} p='3' m='5'>
-                    <Heading  as='h2' size='sm' mb='3'>{list.title}</Heading>
-                    
+            {tasks.map((task, index) => {
+                return <Box key={index} bg='blackAlpha.200' minH={'300px'} minW={'300px'} p='3' m='5'>
+                     <Heading as='h2' size='sm' mb='3'>{lists[0].title}</Heading>
+
                     <Box display='flex' flexDirection='column' gap='3' maxH={'200px'} maxW={'300px'} overflowY='scroll' >
-                        {tasks.map((task, index) =>{
-                            return <Cardd 
-                                key={index}
-                                listIndex={listIndex}
-                                index={index}
-                                data={task}
-                            />
-                        })}
-                        
-                     </Box>
+                        <Cardd 
+                            key={task.id}
+                            listIndex={listIndex}
+                            index={index}
+                            data={task}
+                        />
+                    </Box>
 
                     <Box alignItems='center' justifyContent='center'>
                         <Modal

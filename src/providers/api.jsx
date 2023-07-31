@@ -43,9 +43,9 @@ export const ApiProvider = ({children}) => {
         }
     }  
 
-    async function listTasks(data, userId){
+    async function listTasks(){
         try {
-            const res = await api.get('/tasks/', {data,userId,token})
+            const res = await api.get('/tasks/')
             return res
         } catch (error) {
             return error
