@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from 'react'
+import { useState, useRef, useContext, useEffect } from 'react'
 import { Cardd } from '../Card'
 import { Box, HStack, Heading } from '@chakra-ui/layout'
 import { Button } from '@chakra-ui/button'
@@ -19,7 +19,7 @@ import {
 import { ApiContext } from '../../providers/api'
 
 export const List = ({index: listIndex, lists}) => {
-    const { createsTasks } = useContext(ApiContext)
+    const { createsTasks, setTasks, tasks } = useContext(ApiContext)
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const initialRef = useRef(null)
@@ -30,7 +30,9 @@ export const List = ({index: listIndex, lists}) => {
     const handleInputChange = (e) => setContent(e.target.value)
 
     const userId = localStorage.getItem('userId')
-
+    //para criar uma task agr precisa do id da list: list_id
+    //params: lists
+    
     const data = {
         content: content,
         user_id: userId
@@ -38,6 +40,7 @@ export const List = ({index: listIndex, lists}) => {
 
     const handleData = async () => {
         const response = await createsTasks(data)
+        setTasks(response)
 
         if(content === ''){
             toast({description:'Task required', status: 'error', duration: 4000,})
@@ -47,6 +50,8 @@ export const List = ({index: listIndex, lists}) => {
         }
     }
 
+    console.log(tasks)
+
     return(
         <HStack >
             {lists.map((list, index) =>{
@@ -54,12 +59,15 @@ export const List = ({index: listIndex, lists}) => {
                     <Heading  as='h2' size='sm' mb='3'>{list.title}</Heading>
                     
                     <Box display='flex' flexDirection='column' gap='3' maxH={'200px'} maxW={'300px'} overflowY='scroll' >
-                        <Cardd 
-                            key={list.id}
-                            listIndex={listIndex}
-                            index={index}
-                            data={list}
-                        />
+                        {tasks.map((task, index) =>{
+                            return <Cardd 
+                                key={index}
+                                listIndex={listIndex}
+                                index={index}
+                                data={task}
+                            />
+                        })}
+                        
                      </Box>
 
                     <Box alignItems='center' justifyContent='center'>
@@ -74,7 +82,7 @@ export const List = ({index: listIndex, lists}) => {
                         <ModalCloseButton />
                         <ModalBody pb={6}>
                         <FormControl isRequired>
-                            <FormLabel>Task</FormLabel>
+                            <FormLabel>Task Name</FormLabel>
                             <Input ref={initialRef} value={content} onChange={handleInputChange} placeholder='Enter here' />
                         </FormControl>
                         </ModalBody>

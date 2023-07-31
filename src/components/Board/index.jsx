@@ -6,7 +6,7 @@ import { Box } from "@chakra-ui/react"
 import { ApiContext } from "../../providers/api"
 
 export const Board = () => {
-    const { listLists, lists } = useContext(ApiContext)
+    const { lists, setLists } = useContext(ApiContext)
     
     const move = (fromList, toList, from, to) =>{
         setLists(produce(lists, draft => {

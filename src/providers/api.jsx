@@ -5,8 +5,9 @@ export const ApiContext = createContext([])
 
 export const ApiProvider = ({children}) => {
     let token = localStorage.getItem('token')
-    const toast = useToast()
+    const toast = useToast() 
     const [lists,setLists] = useState([])
+    const [tasks,setTasks] = useState([])
 
     async function createsClients(data){
         try {
@@ -93,7 +94,7 @@ export const ApiProvider = ({children}) => {
 
     return(
         <ApiContext.Provider
-            value={{createsClients,loginClients,createsTasks,createsLists,updateTasks,deleteTasks,listTasks,listLists,lists,setLists}}
+            value={{createsClients,loginClients,createsTasks,createsLists,updateTasks,deleteTasks,listTasks,listLists,lists,setLists,tasks,setTasks}}
         >
             {children}
         </ApiContext.Provider>

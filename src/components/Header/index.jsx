@@ -17,10 +17,10 @@ import {
     useDisclosure,
     useToast
 } from '@chakra-ui/react'
-import { ApiContext } from '../../providers/api'
+import { ApiContext } from "../../providers/api"
 
 export const Header = () => {
-    const { createsLists } = useContext(ApiContext)
+    const { createsLists, setLists } = useContext(ApiContext)
 
     const history = useHistory()
 
@@ -29,23 +29,25 @@ export const Header = () => {
     const initialRef = useRef(null)
 
     const [title, setTitle] = useState('')
+
     const toast = useToast()
 
     const handleInputChange = (e) => setTitle(e.target.value)
-    
+
     const userId = localStorage.getItem('userId')
 
     const data = {
         title: title,
         user_id: userId
     }
-    
+
     const handleData = async () => {
-        const response = await createsLists(data)
+        const res = await createsLists(data)
+        setLists(res)
         
         if(title === ''){
             toast({description:'List required', status: 'error', duration: 4000,})
-        }else{
+        }else if(res.data !== 'AxiosError'){
             onClose()
             toast({description:'List creates', status: 'success', duration: 4000, colorScheme:'blue'})
         }
@@ -77,7 +79,7 @@ export const Header = () => {
                     <ModalCloseButton />
                     <ModalBody pb={6}>
                     <FormControl isRequired>
-                        <FormLabel>List</FormLabel>
+                        <FormLabel>List Name</FormLabel>
                         <Input ref={initialRef} value={title} onChange={handleInputChange} placeholder='Enter here' />
                     </FormControl>
                     </ModalBody>

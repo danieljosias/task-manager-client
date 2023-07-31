@@ -82,7 +82,6 @@ export const Cardd = ({listIndex, index, data}) => {
         if(input === ''){
             toast({description:'Task required', status: 'error', duration: 4000,})
         }else{
-            console.log(input)
             onClose()
             toast({description:'Task edited', status: 'success', duration: 4000, colorScheme:'blue',})
         }
@@ -95,7 +94,7 @@ export const Cardd = ({listIndex, index, data}) => {
     return(
       <Card p='3' bg='blue.300' cursor='grab' ref={ref} isDragging={isDragging}>
         <HStack>
-         <Text fontWeight='bold' fontSize={{base: 'sm', md:'md'}} minW={'150'} maxW={'150'} overflow='hidden' textOverflow='ellipsis' whiteSpace='nowrap'>{data.task.content}</Text>
+         <Text fontWeight='bold' fontSize={{base: 'sm', md:'md'}} minW={'150'} maxW={'150'} overflow='hidden' textOverflow='ellipsis' whiteSpace='nowrap'>{data.content}</Text>
           
           <Box>
               <Modal
