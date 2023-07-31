@@ -42,7 +42,6 @@ export const Header = () => {
     
     const handleData = async () => {
         const response = await createsLists(data)
-        console.log(response)
         
         if(title === ''){
             toast({description:'List required', status: 'error', duration: 4000,})
