@@ -43,8 +43,8 @@ export const Header = () => {
 
     const handleData = async () => {
         const res = await createsLists(data)
-        setLists(res)
-        
+        setLists([res])
+
         if(title === ''){
             toast({description:'List required', status: 'error', duration: 4000,})
         }else if(res.data !== 'AxiosError'){

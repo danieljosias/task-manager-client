@@ -1,4 +1,4 @@
-import { useState, useRef, useContext, useEffect } from 'react'
+import { useState, useRef, useContext } from 'react'
 import { Cardd } from '../Card'
 import { Box, HStack, Heading } from '@chakra-ui/layout'
 import { Button } from '@chakra-ui/button'
@@ -30,17 +30,17 @@ export const List = ({index: listIndex, lists}) => {
     const handleInputChange = (e) => setContent(e.target.value)
 
     const userId = localStorage.getItem('userId')
-    //para criar uma task agr precisa do id da list: list_id
-    //params: lists
-    
+    const listId = lists[0]?.id
+
     const data = {
         content: content,
-        user_id: userId
+        user_id: userId,
+        list_id: listId
     }
 
     const handleData = async () => {
         const response = await createsTasks(data)
-        setTasks(response)
+        setTasks([response])
 
         if(content === ''){
             toast({description:'Task required', status: 'error', duration: 4000,})
@@ -49,8 +49,6 @@ export const List = ({index: listIndex, lists}) => {
             toast({description:'Task creates', status: 'success', duration: 4000, colorScheme:'blue'})
         }
     }
-
-    console.log(tasks)
 
     return(
         <HStack >
